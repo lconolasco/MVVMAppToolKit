@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MVVMApp.Models"
+             xmlns:viewmodels="clr-namespace:MVVMApp.ViewModels"
+             x:DataType="viewmodels:ParticipanteViewModel"
+             x:Class="MVVMApp.MainPage"
+             Title="{Binding Title}">
+
+    <Grid RowDefinitions="*,*"
+          VerticalOptions="Start">
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="20"
+                             Padding="20,0">
+            <Label Text="Nome"/>
+            
+            <Entry x:Name="entryName"
+                   Text="{Binding Nome}"
+                   Placeholder="Inserir Nome"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="LightGray"
+                   Completed="Completed"/>
+            
+            <Label Text="Sobrenome"/>
+            
+            <Entry x:Name="entrySobrenome"
+                   Text="{Binding Sobrenome}"
+                   Placeholder="Inserir Nome"
+                   PlaceholderColor="Gray"
+                   BackgroundColor="LightGray"
+                   Completed="CompletedSobrenome"/>
+            
+            <Button x:Name="btnInserirNome"
+                    Text="Inserir"
+                    BackgroundColor="Green"
+                    Command="{Binding IncluirNomeCommand}"
+                    Clicked="CompletedSobrenome"/>
+            
+            <Button Text="Sortear"
+                    BackgroundColor="Orange"
+                    Command="{Binding SortearCommand}"/>
+
+            <Label x:Name="lblMensagem"
+                   Text="{Binding Messagem}"
+                   TextColor="Red"
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"
+                   IsEnabled="False" />
+
+        </VerticalStackLayout> 
+        <Frame  Grid.Row="1"
+                Margin="20"
+                Padding="0">
+
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Participantes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ParticipanteModel">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Remover"
+                                               BackgroundColor="Red"
+                                               CommandParameter="{Binding .}"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ParticipanteViewModel}}, Path=RemoverNomeCommand}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text=" Corrigir"
+                                               BackgroundColor="Green"
+                                               CommandParameter="{Binding .}"
+                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ParticipanteViewModel}},Path=CorrigirNomeCommand}"/>
+
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame CornerRadius="0"
+                                   BackgroundColor="PowderBlue">
+                                <HorizontalStackLayout Spacing="7">
+                                    <Label Text="{Binding Id}"/>
+                                    <Label Text="{Binding Nome}"/>
+                                    <Label Text="{Binding Sobrenome}"/>
+                                </HorizontalStackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Frame>
+    </Grid>
+</ContentPage>
