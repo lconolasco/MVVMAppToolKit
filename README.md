@@ -22,7 +22,8 @@ Road Map
 
 1a. fase:
 
-Modificaçoes no visual do App, melhorias na experiencia de usuario tais como o deslocamento do cursor de uma caixa de entrada para outra apos a concluçao da inserçao de um dado.
+Seram feitas modificaçoes no visual do App, melhorias na experiencia de usuario tais como o deslocamento do cursor de uma caixa de entrada para outra apos a concluçao da inserçao de um dado.
+
 Nesta fase foram feitas as seguintes alteraçoes:
 Realizado melhorias no UI com mudanças na paleta de cores dos controles, caixas de texto e etiquetas.
 Foi adicionado açoes no front end com a intençao de melhorar o UX. Por exemplo: Apòs o inserimento do nome e clicando no botao enviar do teclando virtual do celular, o cursor vai para o campo de sobrenome. E apòs o inserimento do sobrenome e clicando no botao enviar, ele insere os dados na lista. A label "lblMensagem" é usada pra exibiçao de erros ocorridos durante as operaçoes de inserimento e sorteio no App.
@@ -30,8 +31,14 @@ Back end - Apòs o sorteio, o nome do ganhador serà retirado da lista e serà a
 	
 2a. fase
 	
-Serà implementado CRUD na CollectionView.
-	
+Serà implementado metodos para a manipulaçao do dados presentes na CollectionView.
+
+Nesta fase foram implementados os metodos RemoverNome e CorrigirNome. Estes metodos sao executados com as chamadas de Swipe.
+O evento SwipeLeft invoca o metodo CorrigirNome.
+O SwipeRight executa o metodo RemoverNome.
+
+Bug #1: O metodo CorrigirNome nao funciona corretamente. O parametro passado é sempre o primeiro.
+
 3a. fase
 	
 Serà incluido um banco de dados local.
